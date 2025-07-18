@@ -1,0 +1,47 @@
+name: Release
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build and Release
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Cache turbo build setup
+        uses: actions/cache@v4
+        with:
+          path: .turbo
+          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Create Release
+        run: npx @changesets/cli@latest release --yes
+
+      - name: push changes
+        run: |
+          git config --local user.name "github-actions"
+          git config --local user.email "github@juwel.dev"
+          git add .
+          git commit -m "chore: release"
+          
+          
