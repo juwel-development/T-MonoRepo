@@ -1,0 +1,13 @@
+{
+	"name": "@juwel-development/config",
+	"version": "0.0.0",
+	"type": "module",
+	"private": true,
+	"exports": {
+		"./biome": "./biome.json",
+		"./styles.css": "./styles.css",
+		"./tsconfig.json": "./tsconfig.json",
+		"./postcss": "./postcss.config.js"
+	},
+	"devDependencies": {}
+}

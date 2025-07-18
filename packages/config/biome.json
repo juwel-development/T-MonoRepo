@@ -1,0 +1,29 @@
+{
+	"$schema": "https://biomejs.dev/schemas/2.1.2/schema.json",
+	"assist": {
+		"actions": {
+			"source": {
+				"organizeImports": "on"
+			}
+		}
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true
+		},
+		"includes": ["**", "!**/node_modules/**", "!**/dist/**", "!**/.astro/**"]
+	},
+	"formatter": {
+		"enabled": true,
+		"includes": ["**", "!**/node_modules/**", "!**/dist/**", "!**/.astro/**"]
+	},
+	"javascript": {
+		"globals": ["Astro"],
+		"formatter": {
+			"quoteStyle": "single",
+			"indentStyle": "space",
+			"indentWidth": 2
+		}
+	}
+}

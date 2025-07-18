@@ -1,0 +1,3 @@
+{
+	"extends": ["@juwel-development/config/biome"]
+}

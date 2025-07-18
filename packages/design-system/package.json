@@ -1,0 +1,49 @@
+{
+	"name": "@juwel-development/design-system",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"description": "A design system for Juwel Development",
+	"main": "dist/design-system.umd.cjs",
+	"module": "dist/design-system.js",
+	"types": "dist/types/index.d.ts",
+	"scripts": {
+		"build": "vite build",
+		"dev:types": "tsc --emitDeclarationOnly --declarationDir dist",
+		"dev": "vite build --watch",
+		"lint": "biome check",
+		"lint:fix": "biome check --write",
+		"format": "biome format --write",
+		"preview": "vite preview"
+	},
+	"files": [
+		"dist"
+	],
+	"exports": {
+		".": {
+			"types": "./dist/types/index.d.ts",
+			"import": "./dist/design-system.js",
+			"require": "./dist/design-system.umd.cjs"
+		},
+		"./style.css": "./dist/index.css",
+		"./package.json": "./package.json"
+	},
+	"dependencies": {
+		"react": "^19.1.0",
+		"react-dom": "^19.1.0"
+	},
+	"devDependencies": {
+		"@juwel-development/config": "*",
+		"@biomejs/biome": "^2.1.2",
+		"@tailwindcss/vite": "^4.1.11",
+		"@types/react": "^19.1.8",
+		"@types/react-dom": "^19.1.6",
+		"@vitejs/plugin-react-swc": "^3.10.2",
+		"globals": "^16.3.0",
+		"typescript": "~5.8.3",
+		"typescript-eslint": "^8.35.1",
+		"vite": "^7.0.4",
+		"vite-plugin-lib-inject-css": "^2.2.2",
+		"vite-plugin-dts": "^4.5.4"
+	}
+}
