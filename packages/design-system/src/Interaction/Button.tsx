@@ -1,7 +1,8 @@
 import type { FunctionComponent, PropsWithChildren } from 'react';
+import type { Subject } from 'rxjs';
 
 type IProps = {
-  onClick?: () => void;
+  onClick$?: Subject<void>;
 };
 
 /**
@@ -25,13 +26,17 @@ type IProps = {
  */
 export const Button: FunctionComponent<PropsWithChildren<IProps>> = ({
   children,
-  onClick,
+  onClick$,
 }) => {
   return (
     <button
       type={'button'}
       className="bg-primary-500 py-2 px-4 rounded hover:bg-primary-600"
-      onClick={onClick}
+      onClick={() => {
+        if (onClick$) {
+          onClick$.next();
+        }
+      }}
     >
       {children}
     </button>

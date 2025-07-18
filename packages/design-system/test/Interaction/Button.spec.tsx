@@ -1,6 +1,7 @@
 import '@testing-library/jest-dom';
 
 import { fireEvent, render, screen } from '@testing-library/react';
+import { Subject } from 'rxjs';
 import { describe, expect, it, vi } from 'vitest';
 import { Button } from '../../src/Interaction/Button';
 
@@ -22,11 +23,13 @@ describe('Button Component', () => {
     expect(button).toHaveAttribute('type', 'button');
   });
 
-  it('handles click events', () => {
-    const handleClick = vi.fn();
-    render(<Button onClick={handleClick}>Click Me</Button>);
-    const button = screen.getByRole('button');
+  it('handles click events via Subjects', () => {
+    const onClick$ = new Subject<void>();
 
+    const handleClick = vi.fn();
+    onClick$.subscribe(handleClick);
+    render(<Button onClick$={onClick$}>Click Me</Button>);
+    const button = screen.getByRole('button');
     fireEvent.click(button);
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
