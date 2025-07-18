@@ -8,9 +8,10 @@
 	"module": "dist/design-system.js",
 	"types": "dist/types/index.d.ts",
 	"scripts": {
-		"build": "vite build",
-		"dev:types": "tsc --emitDeclarationOnly --declarationDir dist",
-		"dev": "vite build --watch",
+		"build:components": "vite build",
+		"build:types": "tsc --emitDeclarationOnly --declarationDir dist/types",
+		"dev:types": "tsc --emitDeclarationOnly --declarationDir dist/types --watch",
+		"dev:components": "vite build --watch",
 		"lint": "biome check",
 		"lint:fix": "biome check --write",
 		"format": "biome format --write",

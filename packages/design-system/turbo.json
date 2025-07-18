@@ -2,9 +2,28 @@
 	"extends": ["//"],
 	"tasks": {
 		"dev": {
+			"with": ["dev:components", "dev:types"]
+		},
+		"dev:components": {
 			"outputs": ["dist/**"],
 			"cache": false,
 			"persistent": true
+		},
+		"dev:types": {
+			"outputs": ["dist/types/**"],
+			"cache": false,
+			"persistent": true
+		},
+		"build": {
+			"dependsOn": ["build:components", "build:types"],
+			"inputs": ["$TURBO_DEFAULT$", ".env*"],
+			"outputs": ["dist/**"]
+		},
+		"build:components": {
+			"outputs": ["dist/**"]
+		},
+		"build:types": {
+			"outputs": ["dist/types/**"]
 		}
 	}
 }
