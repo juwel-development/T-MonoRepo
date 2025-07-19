@@ -35,14 +35,13 @@ jobs:
         run: npm run build
 
       - name: Create Release
-        run: npx @changesets/cli@latest publish
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: changesets publish
+          commit: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: push changes
-        uses: actions-js/push@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
           
           
