@@ -38,7 +38,7 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: changesets publish
+          publish: npx @changesets/cli publish
           commit: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
